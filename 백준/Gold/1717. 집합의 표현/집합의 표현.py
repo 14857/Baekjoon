@@ -1,30 +1,38 @@
+# m은 입력으로 주어지는 연산의 개수 / n+1개의 집합
+# 런타임 에러 (RecursionError) 발생 -> 제한
+
 import sys
-sys.setrecursionlimit(1000000) # 재귀 깊이 제한 늘리기
+sys.setrecursionlimit(1000000) # n범위
 input = sys.stdin.readline
 
-n, m = map(int, input().split())
-parent = [i for i in range(n + 1)] # 자기 자신을 부모로 갖는 n + 1개 집합
 
-# 찾기 연산(같은 집합에 속하는지 확인하기 위한 함수)
+# 같은 집합에 속하는지 확인 -> 재귀 이용
 def find_parent(x):
-    if parent[x] != x:
-        parent[x] = find_parent(parent[x])
-    return parent[x]
+    if lst[x] != x:
+        lst[x] = find_parent(lst[x])
+    return lst[x]
 
-# 합집합 연산(두 집합을 합치기 위한 함수)
-def union_parent(a, b):
+# 합집합
+def union(a, b):
     a = find_parent(a)
     b = find_parent(b)
-    if a < b: # 값이 더 작은 쪽을 부모로
-        parent[b] = a
+    
+    if a < b:
+        lst[b] = a
     else:
-        parent[a] = b
-        
+        lst[a] = b
+
+
+n, m = map(int, input().split())
+lst = [i for i in range(n + 1)] # 자기 자신을 부모로 갖는 n + 1개 집합
+
 for _ in range(m):
-    opr, a, b = map(int, input().split())
-    if opr == 0:
-        union_parent(a, b)
-    else:
+    s, a, b = map(int, input().split())
+    
+    if s == 0: # 합집합
+        union(a, b)
+    
+    elif s == 1: # 두 원소가 같은 집합에 포함되어 있는지 확인하는 연산 
         if find_parent(a) == find_parent(b):
             print("YES")
         else:
