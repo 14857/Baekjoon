@@ -11,14 +11,14 @@ lst.sort()
 
 if k>= n:
     print(0)
-    exit()
 
-for i in range(1,n):
-    ans.append(lst[i] - lst[i-1])
+else:
+    for i in range(1,n):
+        ans.append(lst[i] - lst[i-1])
 
-ans.sort(reverse = True)
+    ans.sort(reverse = True)
 
-for _ in range(k-1):
-    ans.pop(0)
+    for _ in range(k-1):
+        ans.pop(0)
 
-print(sum(ans))
+    print(sum(ans))
