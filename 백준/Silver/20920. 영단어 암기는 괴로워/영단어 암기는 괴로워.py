@@ -1,18 +1,27 @@
-import sys
+# 단어장의 단어순서
+# 주 나오는 단어일수록 앞에 배치한다.
+# 해당 단어의 길이가 길수록 앞에 배치한다.
+# 알파벳 사전 순으로 앞에 있는 단어일수록 앞에 배치한다
 
-n, m = map(int, sys.stdin.readline().split())
-word_set = {}
+import sys
+input = sys.stdin.readline
+
+dic = {}
+
+n,m = map(int,input().split())
 
 for _ in range(n):
-    word = sys.stdin.readline().strip()
-
-    if len(word) >= m:
-        if word in word_set:
-            word_set[word] += 1
+    word = input().strip()
+    
+    if(len(word)>=m):
+    
+        if word in dic:
+            dic[word] += 1
+        
         else:
-            word_set[word] = 1
+            dic[word] = 1
 
-word_dict = sorted(word_set.items(),key=lambda x:(-x[1],-len(x[0]),x[0]))
+dic = sorted(dic.items(), key=lambda item: (-item[1],-len(item[0]),item[0]))
 
-for word in word_dict:
-    print(word[0])
+for i in dic:
+    print(i[0])
