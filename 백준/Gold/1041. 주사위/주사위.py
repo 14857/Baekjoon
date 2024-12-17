@@ -1,30 +1,37 @@
-import sys
-n = int(sys.stdin.readline().rstrip("\n"))
-nums = list(map(int, sys.stdin.readline().rstrip("\n").split()))
-sum=0
-sumLists=[]
-if(n==1):
-    nums = sorted(nums)
-    for i in range(0,5):
-        sum+=nums[i]
-else:
-    sumLists.append(min(nums[0],nums[5]))
-    sumLists.append(min(nums[1],nums[4]))
-    sumLists.append(min(nums[2],nums[3]))
-    sumLists = sorted(sumLists)
+# 그리디 알고리즘
+# 1개의 면만 보이는 주사위 -> 최솟값이기 때문에 무조건 가장 작은 값이 출력
+# 2개의 면이 보이는 주사위 -> 다른 쌍이면서 가장 작은 값 두가지를 보이게 한다.
+# 3개의 면이 보이는 주사위 -> 세 쌍중 작은 값들만 보이게 한다.
 
-    #1,2,3면이 보여질때 주사위 최소값
-    min1 = sumLists[0]
-    min2 = sumLists[0] + sumLists[1]
-    min3 = sumLists[0] + sumLists[1] + sumLists[2]
+# N과 주사위에 쓰여 있는 수가 주어질 때,
+# 보이는 5개의 면에 쓰여 있는 수의 합의 최솟값을 출력하는 프로그램
 
-    #1,2,3면이 보여지는 주사위 개수
-    n1 = (n-2)*(n-2) + 4*(n-1)*(n-2)
-    n2 = 4*(n-2) + 4*(n-1)
-    n3 = 4
+N = int(input())
+dice = list(map(int,input().split(' ')))
 
-    sum += n1 * min1
-    sum += n2 * min2
-    sum += n3 * min3
+square = N*N*5
+answer = 0
 
-print(sum)
+if N == 1 :
+    dice.sort()
+    print(sum(dice[:5]))
+
+else :
+    answer = 0
+    pair = []
+    
+    for i in range(3):
+        pair.append(min(dice[i],dice[-1-i]))
+    pair.sort()
+
+    # 3면이 모두 보이는 경우
+    answer += 4*sum(pair)
+    square -= 4*3
+
+    # 2면이 모두 보이는 경우
+    answer += (8*N-12)*sum(pair[:2])
+    square -= (8*N-12)*2
+    
+    # 1면만 보이는 경우
+    answer += square*pair[0]
+    print(answer)
