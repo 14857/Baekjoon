@@ -1,0 +1,11 @@
+class Solution {
+    fun solution(num_list: IntArray, n: Int): IntArray {
+        var answer: IntArray = intArrayOf() // 빈 정수 배열 선언
+        
+        for (i in 0 until num_list.size step n){
+            answer += num_list[i]
+        }
+        
+        return answer
+    }
+}
