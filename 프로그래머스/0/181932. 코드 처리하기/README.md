@@ -1,10 +1,10 @@
 # [level 0] 코드 처리하기 - 181932 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181932?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181932?language=kotlin) 
 
 ### 성능 요약
 
-메모리: 9.25 MB, 시간: 16.42 ms
+메모리: 362 MB, 시간: 344.01 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 01월 05일 16:19:41
+2026년 01월 05일 16:28:47
 
 ### 문제 설명
 
