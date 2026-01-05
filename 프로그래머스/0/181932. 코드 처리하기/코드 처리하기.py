@@ -6,11 +6,11 @@ def solution(code):
         if code[i] == "1":
             mode = 0 if mode == 1 else 1   
         else:
-            if (i %2 == 0 and mode == 0):
-                answer +=(code[i])
-            elif (i %2 == 1 and mode == 1):
+            if (i %2 == 0 and mode == 0) or(i %2 == 1 and mode == 1):
                 answer+=(code[i])
     if len(answer) == 0:
         answer = "EMPTY"
     
     return answer
+
+
